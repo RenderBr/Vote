@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using TShockAPI;
 using TShockAPI.DB;
+using TerrariaApi.Server;
 
 namespace Vote
 {
@@ -11,7 +12,6 @@ namespace Vote
 		public TSWheelPlayer() : base("Wheel")
 		{
 			Group = VotePlugin.Config.ExecutiveGroup;
-			User = new User { Name = "Wheel" };
 		}
 
 		public override void SendErrorMessage(string msg)

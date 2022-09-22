@@ -77,7 +77,7 @@ namespace Vote
 			if (Votes.Count == 0)
 				return;
 
-			foreach (var vote in Votes.Where(v => v.Proponents.Union(v.Opponents).All(name => !name.Equals(ply.User.Name))))
+			foreach (var vote in Votes.Where(v => v.Proponents.Union(v.Opponents).All(name => !name.Equals(ply.Name))))
 			{
 				data.AwaitingVote = true;
 				ply.SendInfoMessage("Vote: {1} for {2} by {0} is in progress. ({3}s last)", vote.Sponsor,
@@ -101,7 +101,7 @@ namespace Vote
 			}
 
 			var cmd = args.Parameters.Count > 0 ? args.Parameters[0].ToLower() : "help";
-			var players = args.Parameters.Count < 2 ? new List<TSPlayer>() : TShock.Utils.FindPlayer(args.Parameters[1]);
+			var players = args.Parameters.Count < 2 ? new List<TSPlayer>() : TSPlayer.FindByNameOrID(args.Parameters[1]);
 			var data = PlayerData.GetData(args.Player);
 			if (data.StartedVote != null)
 			{
@@ -152,10 +152,10 @@ namespace Vote
 					}
 					if (players.Count == 0)
 					{
-						var user = TShock.Users.GetUserByName(args.Parameters[1]);
+						var user = TSPlayer.FindByNameOrID(args.Parameters[1])[0];
 						if (user != null)
 						{
-							if (TShock.Groups.GetGroupByName(user.Group).HasPermission(Permissions.immunetoban))
+							if (user.HasPermission(Permissions.immunetoban))
 							{
 								args.Player.SendErrorMessage("You can't ban {0}!", user.Name);
 								return;
@@ -170,7 +170,7 @@ namespace Vote
 					}
 					if (players.Count > 1)
 					{
-						TShock.Utils.SendMultipleMatchError(args.Player, players.Select(p => p.Name));
+						args.Player.SendMultipleMatchError(players.Select(p => p.Name));
 						return;
 					}
 					playerName = players.SingleOrDefault()?.Name ?? playerName;
@@ -191,7 +191,7 @@ namespace Vote
 					}
 					if (players.Count > 1)
 					{
-						TShock.Utils.SendMultipleMatchError(args.Player, players.Select(p => p.Name));
+						args.Player.SendMultipleMatchError(players.Select(p => p.Name));
 						return;
 					}
 					#endregion
@@ -211,7 +211,7 @@ namespace Vote
 					}
 					if (players.Count > 1)
 					{
-						TShock.Utils.SendMultipleMatchError(args.Player, players.Select(p => p.Name));
+						args.Player.SendMultipleMatchError(players.Select(p => p.Name));
 						return;
 					}
 					#endregion
@@ -231,7 +231,7 @@ namespace Vote
 					}
 					if (players.Count > 1)
 					{
-						TShock.Utils.SendMultipleMatchError(args.Player, players.Select(p => p.Name));
+						args.Player.SendMultipleMatchError(players.Select(p => p.Name));
 						return;
 					}
 					#endregion
