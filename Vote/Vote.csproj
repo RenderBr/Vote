@@ -1,80 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8016E0F2-824B-4A07-9488-F4A49765854B}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vote</RootNamespace>
-    <AssemblyName>Vote</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.346202">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ModFramework">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\ModFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Data.Sqlite">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\Newtonsoft.Json.dll</HintPath>
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="OTAPI">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\OTAPI.dll</HintPath>
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\OTAPI.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="TerrariaServer">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\TerrariaServer.exe</HintPath>
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\TerrariaServer.dll</HintPath>
     </Reference>
     <Reference Include="TShockAPI">
-      <HintPath>J:\Downloads\TShock4.5.18_Terraria1.4.3.6(1)\ServerPlugins\TShockAPI.dll</HintPath>
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\ServerPlugins\TShockAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="PlayerData.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TSWheelPlayer.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="Vote.cs" />
-    <Compile Include="VoteManager.cs" />
-    <Compile Include="VotePlugin.cs" />
-    <Compile Include="VoteType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
